@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Video } from "expo-av";
 import { Overlay } from "react-native-elements";
 import { Div, Text, Image, Icon } from "react-native-magnus";
-import { View, StyleSheet, ScrollView, TouchableHighlight } from "react-native";
+import { View, ScrollView, TouchableHighlight } from "react-native";
 
 const GameTipsDetail = (list) => {
   const [visible, setVisible] = useState(false);
