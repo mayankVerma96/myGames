@@ -27,7 +27,7 @@ const GamesList = ({ navigation }) => {
           // games &&
           //   games.myGames &&
           //   Object.values(games.myGames.fields).map((result) => {
-          //     result &&
+          //     result && //
           data &&
             data.map((game, id) => {
               return (
