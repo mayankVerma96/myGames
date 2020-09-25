@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 
+import { LinearGradient } from "expo-linear-gradient";
 import { Skeleton, Text, Div } from "react-native-magnus";
 
 import GamesDetail from "./GamesDetail";
@@ -46,26 +47,50 @@ const GamesList = ({ navigation }) => {
                         }
                       >
                         <View style={styles.gameContainer}>
-                          <Image
-                            style={styles.imageStyle}
-                            source={{ uri: game.image }}
-                          />
+                          <Div>
+                            <LinearGradient
+                              // Background Linear Gradient
+                              colors={["transparent", "black"]}
+                              style={{
+                                position: "absolute",
+                                left: 0,
+                                right: 0,
+                                bottom: 5,
+                                height: 300,
+                                zIndex: 3,
+                              }}
+                            >
+                              <Div
+                                //w="100%"
+                                style={{
+                                  position: "absolute",
+                                  bottom: 20,
+                                  left: 10,
+                                }}
+                              >
+                                <Text
+                                  color="white"
+                                  fontWeight="bold"
+                                  fontSize="xl"
+                                  fontFamily="primary"
+                                  bg="gray900"
+                                  px={10}
+                                  py={6}
+                                  rounded="xl"
+                                >
+                                  {game.name}
+                                </Text>
+                              </Div>
+                            </LinearGradient>
+
+                            <Image
+                              style={styles.imageStyle}
+                              source={{ uri: game.image }}
+                            />
+                          </Div>
 
                           <Div d="flex" flexDir="row" flexWrap="wrap" mt={4}>
-                            <Text
-                              color="white"
-                              fontFamily="vermin-vibes"
-                              fontSize="lg"
-                              bg="gray900"
-                              px={10}
-                              py={6}
-                              mr={6}
-                              mt={6}
-                              rounded="xl"
-                              style={styles.name}
-                            >
-                              {game.name}
-                            </Text>
+                            {/* */}
                             {game.category.map((category) => {
                               return (
                                 <Text
@@ -106,7 +131,7 @@ const GamesList = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 40,
-    paddingLeft: 20,
+    paddingHorizontal: 20,
     backgroundColor: "black",
   },
   gameContainer: {
@@ -116,16 +141,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     marginVertical: 10,
-    fontFamily: "vermin-vibes",
+    fontFamily: "vermin-vibes-new",
   },
   imageStyle: {
     width: "auto",
-    height: 180,
+    height: 280,
     borderRadius: 10,
     marginTop: 15,
     marginBottom: 5,
-    marginRight: 20,
-    opacity: 0.7,
+    //marginRight: 20,
+    //opacity: 0.7,
   },
   name: {
     fontWeight: "bold",

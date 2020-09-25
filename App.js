@@ -20,20 +20,24 @@ const theme = {
   colors: {
     redPink: "#e7305b",
   },
-};
-
-const fetchFonts = () => {
-  return Font.loadAsync({
-    "vermin-vibes": require("./assets/fonts/vermin-vibes.ttf"),
-    // "roboto-italic": require("./assets/fonts/Roboto-Italic.ttf"),
-    // "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
-  });
+  fontFamily: {
+    primary: "vermin-vibes",
+  },
 };
 
 const Tab = createMaterialTopTabNavigator();
 const RootStack = createStackNavigator();
 
 const GamesStack = createStackNavigator();
+
+const fetchFonts = () => {
+  return Font.loadAsync({
+    "vermin-vibes": require("./assets/fonts/vermin-vibes.ttf"),
+    "vermin-vibes-new": require("./assets/fonts/vermin-vibes.ttf"),
+    // "roboto-italic": require("./assets/fonts/Roboto-Italic.ttf"),
+    // "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
+  });
+};
 
 const HomeTabNavigator = () => (
   <Tab.Navigator
@@ -55,6 +59,7 @@ const HomeTabNavigator = () => (
   >
     <Tab.Screen
       options={{
+        style: { backgroundColor: "black" },
         tabBarLabel: ({ focused }) => {
           return (
             <Text
@@ -88,7 +93,8 @@ const HomeTabNavigator = () => (
           return (
             <Text
               fontWeight={focused ? "bold" : "400"}
-              w={30}
+              w={40}
+              ml={4}
               color={focused ? "white" : "gray500"}
             >
               PC
@@ -120,7 +126,11 @@ const GamesStackScreen = () => (
       name="GamesList"
       component={GamesList}
     ></GamesStack.Screen>
-    <GamesStack.Screen name="Games" component={GamesDetail}></GamesStack.Screen>
+    <GamesStack.Screen
+      name="Games"
+      options={{ style: { backgroundColor: "black" } }}
+      component={GamesDetail}
+    ></GamesStack.Screen>
     <GamesStack.Screen
       name="Games Tips"
       component={GameTipsDetail}

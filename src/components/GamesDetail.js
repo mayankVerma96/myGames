@@ -20,14 +20,18 @@ const GamesDetail = ({ route, navigation }) => {
           source={{ uri: route.params.result.image }}
         />
         <View style={styles.infoContainer}>
-          <Text style={styles.name}>{route.params.result.name}</Text>
-          <Text fontSize="md">{route.params.result.about}</Text>
+          <Text color="white" style={styles.name}>
+            {route.params.result.name}
+          </Text>
+          <Text fontSize="md" color="white">
+            {route.params.result.about}
+          </Text>
 
           <View style={{ marginTop: 30 }}>
             {route.params.result.list.map((list, id) => {
               return (
                 <View key={id}>
-                  <Div bg="white" mb={15}>
+                  <Div bg="black" mb={15}>
                     <TouchableHighlight
                       activeOpacity={0.9}
                       underlayColor="#f9f9f9"
@@ -40,7 +44,7 @@ const GamesDetail = ({ route, navigation }) => {
                       <View>
                         <Div
                           shadow="md"
-                          bg="white"
+                          bg="gray900"
                           alignItems="center"
                           justifyContent="space-between"
                           rounded="lg"
@@ -59,7 +63,10 @@ const GamesDetail = ({ route, navigation }) => {
                               // h={24}
                               fontFamily="Ionicons"
                             ></Icon>
-                            <Text style={styles.tipsCategoryHeading}>
+                            <Text
+                              color="white"
+                              style={styles.tipsCategoryHeading}
+                            >
                               {list.title}
                             </Text>
                           </Div>
@@ -89,11 +96,12 @@ const GamesDetail = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   imageStyle: {
     width: "auto",
     height: 600,
+    opacity: 0.8,
   },
   name: {
     fontWeight: "bold",
