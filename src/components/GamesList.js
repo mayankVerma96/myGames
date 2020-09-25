@@ -2,12 +2,13 @@ import React from "react";
 import _, { get } from "lodash";
 import {
   View,
-  Text,
   StyleSheet,
   Image,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+
+import { Skeleton, Text, Div } from "react-native-magnus";
 
 import GamesDetail from "./GamesDetail";
 import useResults from "../hooks/useResults";
@@ -20,41 +21,85 @@ const GamesList = ({ navigation }) => {
     _.get(games, "myGames.fields[0].options.data", []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>Top Games</Text>
-      <ScrollView>
-        {
-          // games &&
-          //   games.myGames &&
-          //   Object.values(games.myGames.fields).map((result) => {
-          //     result && //
-          data &&
-            data.map((game, id) => {
-              return (
-                game && (
-                  <TouchableOpacity
-                    key={id}
-                    onPress={() =>
-                      navigation.navigate("Games", {
-                        result: game,
-                      })
-                    }
-                  >
-                    <View style={styles.gameContainer}>
-                      <Image
-                        style={styles.imageStyle}
-                        source={{ uri: game.image }}
-                      />
-                      <Text style={styles.name}>{game.name}</Text>
-                    </View>
-                  </TouchableOpacity>
-                )
-              );
-              // });
-            })
-        }
-      </ScrollView>
-    </View>
+    <>
+      {data ? (
+        <View style={styles.container}>
+          <Text style={styles.heading} color="white">
+            Top Games
+          </Text>
+          <ScrollView>
+            {
+              // games &&
+              //   games.myGames &&
+              //   Object.values(games.myGames.fields).map((result) => {
+              //     result &&
+              data &&
+                data.map((game, id) => {
+                  return (
+                    game && (
+                      <TouchableOpacity
+                        key={id}
+                        onPress={() =>
+                          navigation.navigate("Games", {
+                            result: game,
+                          })
+                        }
+                      >
+                        <View style={styles.gameContainer}>
+                          <Image
+                            style={styles.imageStyle}
+                            source={{ uri: game.image }}
+                          />
+
+                          <Div d="flex" flexDir="row" flexWrap="wrap" mt={4}>
+                            <Text
+                              color="white"
+                              fontFamily="vermin-vibes"
+                              fontSize="lg"
+                              bg="gray900"
+                              px={10}
+                              py={6}
+                              mr={6}
+                              mt={6}
+                              rounded="xl"
+                              style={styles.name}
+                            >
+                              {game.name}
+                            </Text>
+                            {game.category.map((category) => {
+                              return (
+                                <Text
+                                  bg="red600"
+                                  opacity={0.8}
+                                  px={8}
+                                  py={6}
+                                  mr={6}
+                                  mt={6}
+                                  rounded="2xl"
+                                  color="white"
+                                  fontSize="md"
+                                  fontWeight="bold"
+                                >
+                                  {category}
+                                </Text>
+                              );
+                            })}
+                          </Div>
+                        </View>
+                      </TouchableOpacity>
+                    )
+                  );
+                  // });
+                })
+            }
+          </ScrollView>
+        </View>
+      ) : (
+        [1, 2, 3].map(() => {
+          <Skeleton.Box mt="sm" h={180} />;
+        })
+      )}
+    </>
   );
 };
 
@@ -62,7 +107,7 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 40,
     paddingLeft: 20,
-    backgroundColor: "white",
+    backgroundColor: "black",
   },
   gameContainer: {
     marginBottom: 20,
@@ -80,11 +125,13 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 5,
     marginRight: 20,
+    opacity: 0.7,
   },
   name: {
     fontWeight: "bold",
     maxWidth: 240,
-    fontFamily: "vermin-vibes",
+    flexDirection: "row",
+    alignSelf: "flex-start",
   },
 });
 

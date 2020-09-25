@@ -46,7 +46,7 @@ const HomeTabNavigator = () => (
         flexDirection: "row",
         justifyContent: "center",
       },
-      style: { fontWeight: "bold", backgroundColor: "#e7305b" },
+      style: { fontWeight: "bold", backgroundColor: "#000000" },
       indicatorStyle: {
         // height: "100%",
         backgroundColor: "#ffffff",
@@ -59,7 +59,7 @@ const HomeTabNavigator = () => (
           return (
             <Text
               fontWeight={focused ? "bold" : "400"}
-              color={focused ? "white" : "blue"}
+              color={focused ? "white" : "gray500"}
               w={50}
             >
               Mobile
@@ -71,7 +71,7 @@ const HomeTabNavigator = () => (
             <Div flexDir="row" justifyContent="center">
               <Icon
                 name="mobile"
-                color={focused ? "white" : "black"}
+                color={focused ? "white" : "gray500"}
                 fontSize="3xl"
                 fontFamily="FontAwesome5"
               />
@@ -89,7 +89,7 @@ const HomeTabNavigator = () => (
             <Text
               fontWeight={focused ? "bold" : "400"}
               w={30}
-              color={focused ? "white" : "blue"}
+              color={focused ? "white" : "gray500"}
             >
               PC
             </Text>
@@ -100,7 +100,7 @@ const HomeTabNavigator = () => (
             <Div flexDir="row" justifyContent="center">
               <Icon
                 name="computer"
-                color={focused ? "white" : "black"}
+                color={focused ? "white" : "gray500"}
                 fontSize="4xl"
                 fontFamily="MaterialIcons"
               />
@@ -146,9 +146,10 @@ export default function App() {
             name="My Games"
             options={{
               title: "My Games",
-              headerTintColor: "black",
+              headerTintColor: "#d3d3d3",
               headerStyle: {
-                backgroundColor: "#e7305b",
+                // backgroundColor: "#e7305b",
+                backgroundColor: "#000000",
                 elevation: 0,
                 shadowOpacity: 0,
               },
