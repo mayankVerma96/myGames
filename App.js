@@ -39,7 +39,7 @@ const HomeTabNavigator = () => (
   <Tab.Navigator
     tabBarOptions={{
       showIcon: true,
-      activeTintColor: "blue",
+      // activeTintColor: "blue",
       inactiveTintColor: "black",
       tabStyle: {
         alignItems: "center",
@@ -88,7 +88,8 @@ const HomeTabNavigator = () => (
           return (
             <Text
               fontWeight={focused ? "bold" : "400"}
-              w={30}
+              w={40}
+              ml={4}
               color={focused ? "white" : "blue"}
             >
               PC
