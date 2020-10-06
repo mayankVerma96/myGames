@@ -2,12 +2,15 @@ import React from "react";
 import _, { get } from "lodash";
 import {
   View,
-  Text,
   StyleSheet,
   Image,
   TouchableOpacity,
+  TouchableHighlight,
   ScrollView,
 } from "react-native";
+
+import { LinearGradient } from "expo-linear-gradient";
+import { Text, Div } from "react-native-magnus";
 
 import GamesDetail from "./GamesDetail";
 import useResults from "../hooks/useResults";
@@ -21,38 +24,104 @@ const GamesList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Top Games</Text>
+      <Text style={styles.heading} px={20}>
+        Top Games
+      </Text>
       <ScrollView>
-        {
-          // games &&
-          //   games.myGames &&
-          //   Object.values(games.myGames.fields).map((result) => {
-          //     result && //
-          data &&
-            data.map((game, id) => {
-              return (
-                game && (
-                  <TouchableOpacity
-                    key={id}
-                    onPress={() =>
-                      navigation.navigate("Games", {
-                        result: game,
-                      })
-                    }
-                  >
-                    <View style={styles.gameContainer}>
-                      <Image
-                        style={styles.imageStyle}
-                        source={{ uri: game.image }}
-                      />
-                      <Text style={styles.name}>{game.name}</Text>
-                    </View>
-                  </TouchableOpacity>
-                )
-              );
-              // });
-            })
-        }
+        <Div px={20}>
+          {
+            // games &&
+            //   games.myGames &&
+            //   Object.values(games.myGames.fields).map((result) => {
+            //     result && //
+            data &&
+              data.map((game, id) => {
+                return (
+                  game && (
+                    <TouchableHighlight
+                      activeOpacity={0.8}
+                      key={id}
+                      underlayColor="white"
+                      onPress={() =>
+                        navigation.navigate("Games", {
+                          result: game,
+                        })
+                      }
+                    >
+                      <View style={styles.gameContainer}>
+                        <Div>
+                          <LinearGradient
+                            // Background Linear Gradient
+                            colors={["transparent", "black"]}
+                            style={{
+                              position: "absolute",
+                              left: 0,
+                              right: 0,
+                              bottom: 5,
+                              height: 150,
+                              zIndex: 3,
+                              borderRadius: 10,
+                            }}
+                          >
+                            <Div
+                              //w="100%"
+                              style={{
+                                position: "absolute",
+                                bottom: 10,
+                                left: 10,
+                              }}
+                            >
+                              <Text
+                                color="white"
+                                fontWeight="bold"
+                                fontSize="xl"
+                                fontFamily="primary"
+                                bg="gray800"
+                                px={15}
+                                py={6}
+                                rounded="lg"
+                              >
+                                {game.name}
+                              </Text>
+                            </Div>
+                          </LinearGradient>
+
+                          <Image
+                            style={styles.imageStyle}
+                            source={{ uri: game.image }}
+                          />
+                        </Div>
+
+                        <Div d="flex" flexDir="row" flexWrap="wrap" mt={4}>
+                          {/* */}
+                          {game.category.map((category) => {
+                            return (
+                              <Text
+                                key={category}
+                                bg="red500"
+                                //opacity={0.8}
+                                px={12}
+                                py={6}
+                                mr={6}
+                                mt={6}
+                                rounded="2xl"
+                                color="white"
+                                fontSize="md"
+                                fontWeight="bold"
+                              >
+                                {category}
+                              </Text>
+                            );
+                          })}
+                        </Div>
+                      </View>
+                    </TouchableHighlight>
+                  )
+                );
+                // });
+              })
+          }
+        </Div>
       </ScrollView>
     </View>
   );
@@ -61,11 +130,13 @@ const GamesList = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 40,
-    paddingLeft: 20,
     backgroundColor: "white",
   },
   gameContainer: {
-    marginBottom: 20,
+    paddingBottom: 20,
+    paddingTop: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f3f3f3",
   },
   heading: {
     fontSize: 18,
@@ -75,11 +146,9 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     width: "auto",
-    height: 180,
+    height: 280,
     borderRadius: 10,
-    marginTop: 15,
     marginBottom: 5,
-    marginRight: 20,
   },
   name: {
     fontWeight: "bold",
